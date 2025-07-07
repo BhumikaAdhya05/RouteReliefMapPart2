@@ -18,7 +18,8 @@ class AntColony:
         self.decay = decay
         self.alpha = alpha
         self.beta = beta
-        self.pheromone_file = pheromone_file or f"pheromones/{source}_{target}.pkl"
+        base_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+        self.pheromone_file = pheromone_file or os.path.join(base_dir, "pheromones", f"{source}_{target}.pkl")
 
         # Load previous pheromone map if it exists
         existing = load_pheromone(self.pheromone_file)
@@ -44,6 +45,7 @@ class AntColony:
                     best_score = score
 
         # Save updated pheromone map
+        os.makedirs(os.path.dirname(self.pheromone_file), exist_ok=True)
         save_pheromone(self.pheromone_file, self.pheromone)
         print("💾 Saved pheromone map.")
 

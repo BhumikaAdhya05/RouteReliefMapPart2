@@ -2,7 +2,7 @@ import osmnx as ox
 import networkx as nx
 import random
 import os
-from core.routing import precompute_fallback_paths  # 👈 Add this import
+from core.routing import precompute_fallback_paths
 
 def load_graph(place="Purulia, West Bengal, India", filepath="data/purulia.graphml", use_cache=True):
     ox.settings.use_cache = use_cache
